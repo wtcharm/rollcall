@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfqb.rollcall.mapper.IpFilterMapper">
+	<resultMap id="BaseResultMap" type="com.xfqb.rollcall.entity.IpFilter">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+		<result column="module" jdbcType="VARCHAR" property="module" />
+		<result column="mark" jdbcType="INTEGER" property="mark" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="dr" jdbcType="INTEGER" property="dr" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, ip, module, mark, create_time, update_time, dr
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ip_filter
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		ip_filter
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.xfqb.rollcall.entity.IpFilter">
+		insert into ip_filter (id, ip,
+		module,
+		mark, create_time, update_time,
+		dr)
+		values
+		(#{id,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR},
+		#{module,jdbcType=VARCHAR},
+		#{mark,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{dr,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.xfqb.rollcall.entity.IpFilter">
+		insert into ip_filter
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="ip != null">
+				ip,
+			</if>
+			<if test="module != null">
+				module,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="dr != null">
+				dr,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="module != null">
+				#{module,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dr != null">
+				#{dr,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xfqb.rollcall.entity.IpFilter">
+		update ip_filter
+		<set>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="module != null">
+				module = #{module,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dr != null">
+				dr = #{dr,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xfqb.rollcall.entity.IpFilter">
+		update ip_filter
+		set ip = #{ip,jdbcType=VARCHAR},
+		module = #{module,jdbcType=VARCHAR},
+		mark = #{mark,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		dr = #{dr,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="select" parameterType="com.xfqb.rollcall.entity.IpFilter"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ip_filter
+		<trim prefix="where" prefixOverrides="and">
+			<if test="ip != null and ip != '' ">
+				and ip = #{ip,jdbcType=VARCHAR}
+			</if>
+			<if test="module != null and module != '' ">
+				and module = #{module,jdbcType=VARCHAR}
+			</if>
+			<if test="mark != null  and mark != '' ">
+				and mark = #{mark,jdbcType=INTEGER}
+			</if>
+			<if test="createTime != null  and createTime != '' ">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateTime != null  and updateTime != '' ">
+				and update_time = #{updateTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="dr != null  and dr != '' ">
+				and dr = #{dr,jdbcType=INTEGER}
+			</if>
+			<if test="id != null  and id != '' ">
+				and id = #{id,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</select>
+</mapper>
